@@ -15,25 +15,20 @@ function Map() {
   const [userCurrentPosition, setUserCurrentPosition] = useState(defaultUserPosition)
   const zoom = 15;
   const getCurrentPositionOptions={
-    timeout: 2000,
+    timeout: 10000,
     maximumAge: 1500
   }
 
   const getUserCurrentPosition = () => {
-
     const isUserDeviceCanGetCurrentPosition = navigator.geolocation
     if (isUserDeviceCanGetCurrentPosition) {
-
       isUserDeviceCanGetCurrentPosition.getCurrentPosition((position) => {
-
         setUserCurrentPosition({ lat: position.coords.latitude, lng: position.coords.longitude })
-
       },(()=>{
         console.log('位置情報を取得できませんでした。')
       }),getCurrentPositionOptions)
     }
   }
-
   useState(() => {
     getUserCurrentPosition();
   }, [])
