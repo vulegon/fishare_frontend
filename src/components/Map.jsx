@@ -1,6 +1,7 @@
 // app/javascript/components/App.js
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { api_key } from '../config/api_key';
 
 
 function Map() {
@@ -12,7 +13,6 @@ function Map() {
     lat: 36.15305354356379, lng: 136.2725972414738 //福井県坂井市丸岡町
   };
   const [userCurrentPosition, setUserCurrentPosition] = useState(defaultUserPosition)
-  const api_key = 'AIzaSyBLbCW39Em5lYuCiJLOVGMpM3CGn5KLlcw'
   const zoom = 15;
   const getCurrentPositionOptions={
     timeout: 2000,
