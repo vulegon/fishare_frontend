@@ -3,5 +3,5 @@ import client from './client';
 
 // 一覧
 export const getList = () => {
-  return client.get('/posts');
+  return client.get('/spots');
 };

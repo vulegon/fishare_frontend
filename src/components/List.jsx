@@ -1,6 +1,6 @@
 // List.jsx
 import React, { useEffect, useState } from 'react';
-import { getList } from '../lib/api/post';
+import { getList } from '../lib/api/spot';
 
 const List = () => {
   const [dataList, setDataList] = useState({});

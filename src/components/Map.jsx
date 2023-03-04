@@ -27,6 +27,7 @@ function Map() {
   }, [])
 
   const onMapClick = (e) => {
+    console.log(`latitude: ${e.latLng.lat()}, longitude: ${e.latLng.lng()}`)
     const clickPosition = { lat: e.latLng.lat(), lng: e.latLng.lng() };
     setMarker(clickPosition);
   }
