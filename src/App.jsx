@@ -1,18 +1,31 @@
 // App.jsx
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import List from './components/List';
+import React, { useEffect, useState, createContext } from 'react';
 import Map from './components/Map';
+import { getSpotList } from './lib/api/spot';
+export const Spot = createContext();
 
 const App = () => {
+  const [spotList, setSpotList] = useState([]);
+
+  useEffect(() => {
+    handleGetSpotList();
+  }, []);
+
+  const handleGetSpotList = async () => {
+    try {
+      const res = await getSpotList();
+      console.log(res.data);
+      setSpotList(res.data.spots);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<List />} />
-        </Routes>
-      </BrowserRouter>
-      <Map className='Map'/>
+      <Spot.Provider value={spotList}>
+        <Map className='Map'/>
+      </Spot.Provider>
     </>
   );
 };
