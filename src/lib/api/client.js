@@ -7,6 +7,7 @@ const options = {
   ignoreHeaders: true,
 };
 
+// バックエンドのアクセス先
 const client = applyCaseMiddleware(
   axios.create({
     baseURL: 'http://localhost:3001/api/v1',

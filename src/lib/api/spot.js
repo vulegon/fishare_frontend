@@ -1,7 +1,7 @@
-// post.js
+// spot.js
 import client from './client';
 
-// 一覧
-export const getList = () => {
+// バックエンドに登録されているSpotモデルの一覧を取得する
+export const getSpotList = () => {
   return client.get('/spots');
 };

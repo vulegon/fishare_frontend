@@ -1,7 +1,8 @@
 // app/javascript/components/App.js
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { api_key } from '../config/api_key';
+import { Spot } from '../App';
 
 
 function Map() {
@@ -11,6 +12,7 @@ function Map() {
   const [marker, setMarker] = useState(defaultUserPosition);
   const zoom = 15;
   const getCurrentPositionOptions = { timeout: 10000, maximumAge: 1500 }
+  const spots = useContext(Spot);
 
   const getUserCurrentPosition = () => {
     const isUserDeviceCanGetCurrentPosition = navigator.geolocation
@@ -35,6 +37,9 @@ function Map() {
   return (
     <LoadScript googleMapsApiKey={api_key}>
       <GoogleMap mapContainerStyle={mapStyles} zoom={zoom} center={userCurrentPosition} onClick={onMapClick}>
+        {spots.map((marker)=>
+          <Marker position={{ lat: marker.latitude, lng: marker.longitude }} key={marker.id} />
+        )}
         <Marker position={{ lat: marker.lat, lng: marker.lng }} />
       </GoogleMap>
     </LoadScript>
